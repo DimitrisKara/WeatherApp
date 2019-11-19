@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray"
@@ -20,6 +21,11 @@
             android:background="@color/design_default_color_primary_dark"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -31,76 +37,137 @@
         app:backgroundTint="@color/design_default_color_primary_dark"
         app:srcCompat="@android:drawable/ic_menu_search" />
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/address"
+            android:id="@+id/txt_city_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="168dp"
-            android:layout_marginLeft="168dp"
-            android:layout_marginTop="60dp"
-            android:text="DHAKA, BD"
+            android:layout_marginStart="172dp"
+            android:layout_marginLeft="172dp"
+            android:layout_marginTop="116dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/updated_at"
+            android:id="@+id/txt_date_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="112dp"
-            android:layout_marginLeft="112dp"
-            android:layout_marginTop="8dp"
-            android:text="12 November 2019, 20:17 PM"
+            android:layout_marginStart="108dp"
+            android:layout_marginLeft="108dp"
+            android:layout_marginTop="56dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/address" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_city_name" />
 
         <TextView
-            android:id="@+id/status"
+            android:id="@+id/txt_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="176dp"
-            android:layout_marginLeft="176dp"
-            android:layout_marginTop="248dp"
-            android:text="Clear Sky"
+            android:layout_marginStart="184dp"
+            android:layout_marginLeft="184dp"
+            android:layout_marginTop="220dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/temp"
-            android:layout_width="133dp"
-            android:layout_height="92dp"
-            android:layout_marginStart="136dp"
-            android:layout_marginLeft="136dp"
-            android:layout_marginTop="20dp"
-            android:text="29°C"
+            android:id="@+id/txt_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="132dp"
+            android:layout_marginLeft="132dp"
+            android:layout_marginTop="36dp"
             android:textSize="60sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/status" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_description" />
 
         <TextView
-            android:id="@+id/temp_min"
+            android:id="@+id/txt_sunrise"
             android:layout_width="102dp"
             android:layout_height="22dp"
-            android:layout_marginStart="51dp"
-            android:layout_marginLeft="51dp"
-            android:layout_marginTop="20dp"
-            android:text="10:00 AM"
+            android:layout_marginStart="52dp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginTop="56dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/temp" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_temperature" />
 
         <TextView
-            android:id="@+id/temp_max"
+            android:id="@+id/txt_sunset"
             android:layout_width="101dp"
             android:layout_height="22dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="63dp"
-            android:layout_marginRight="63dp"
-            android:text="10:00 AM"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="72dp"
+            android:layout_marginRight="72dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/temp" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_temperature" />
+
+        <ImageView
+            android:id="@+id/image_weather"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="168dp"
+            android:layout_marginLeft="168dp"
+            android:layout_marginTop="148dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_temperature" />
+
+        <ProgressBar
+            android:id="@+id/loading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="184dp"
+            android:layout_marginLeft="184dp"
+            android:layout_marginTop="140dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_coords"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginLeft="148dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/image_weather"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_humidity"
+            android:layout_width="85dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="156dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_pressure"
+            android:layout_width="85dp"
+            android:layout_height="27dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginBottom="156dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_wind"
+            android:layout_width="85dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="168dp"
+            android:layout_marginLeft="168dp"
+            android:layout_marginBottom="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
