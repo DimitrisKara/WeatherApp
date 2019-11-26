@@ -1,16 +1,5 @@
-package com.example.weatherapp;
+package com.example.openweather;
 
-import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.ViewPager;
-
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -23,8 +12,8 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 
-import com.example.weatherapp.Adapter.ViewPagerAdapter;
-import com.example.weatherapp.Common.Common;
+import com.example.openweather.Adapter.ViewPagerAdapter;
+import com.example.openweather.Common.Common;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -57,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        coordinatorLayout = (CoordinatorLayout)findViewById(R.id.root_view);
 
-        coordinatorLayout = (CoordinatorLayout)findViewById(R.id.root_view  );
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -92,21 +81,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).check();
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                startActivity(intent);
-                    }
-        });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     private void buildLocationCallBack() {
@@ -118,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Common.current_location = locationResult.getLastLocation();
 
-                viewPager = (ViewPager)findViewById(R.id.viewPager);
+                viewPager = (ViewPager)findViewById(R.id.view_pager);
                 setupViewPager(viewPager);
                 tabLayout = (TabLayout)findViewById(R.id.tabs);
                 tabLayout.setupWithViewPager(viewPager);
@@ -132,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(TodayWeatherFragment.getInstance(),"Today");
+        adapter.addFragment(ForecastFragment.getInstance(),"5 DAYS");
         viewPager.setAdapter(adapter);
     }
 
@@ -141,20 +116,5 @@ public class MainActivity extends AppCompatActivity {
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(3000);
         locationRequest.setSmallestDisplacement(10.0f);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
