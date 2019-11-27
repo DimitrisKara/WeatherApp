@@ -117,4 +117,15 @@ public class MainActivity extends AppCompatActivity {
         locationRequest.setFastestInterval(3000);
         locationRequest.setSmallestDisplacement(10.0f);
     }
+    @Override
+    public void onPostExecute(double temp) {
+        textView.setText("Weather temperature is: " + temp + "°");
+
+        if (clouds) {
+            Toast.makeText(getActivity(), "Today will be a cloudy day!",
+                    Toast.LENGTH_LONG).show();
+        }
+        else return false;
 }
+
+
