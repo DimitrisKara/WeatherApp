@@ -1,4 +1,4 @@
-package com.example.openweather.Model;
+package com.example.weatherapp.Model;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.openweather;
+package com.example.weatherapp;
 
 
 import android.os.Bundle;
@@ -8,19 +8,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.openweather.Common.Common;
-import com.example.openweather.Model.WeatherResult;
-import com.example.openweather.Retrofit.IOpenWeatherMap;
-import com.example.openweather.Retrofit.RetrofitClient;
+import com.example.weatherapp.Common.Common;
+import com.example.weatherapp.Model.WeatherResult;
+import com.example.weatherapp.Retrofit.IOpenWeatherMap;
+import com.example.weatherapp.Retrofit.RetrofitClient;
 import com.squareup.picasso.Picasso;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -31,13 +31,14 @@ import retrofit2.Retrofit;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TodayWeatherFragment extends Fragment {
+/*public class TodayWeatherFragment extends Fragment {
 
 
     ImageView img_weather;
     TextView txt_city_name,txt_humidity,txt_sunrise,txt_sunset,txt_pressure,txt_temperature,txt_description,txt_date_time,txt_wind,txt_geo_coord;
     LinearLayout weather_panel;
     ProgressBar loading;
+
 
     CompositeDisposable compositeDisposable;
     IOpenWeatherMap mService;
@@ -61,7 +62,7 @@ public class TodayWeatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View itemView =  inflater.inflate(R.layout.fragment_today_weather, container, false);
+        View itemView =  inflater.inflate(R.layout.activity_main, container, false);
 
         img_weather = (ImageView)itemView.findViewById(R.id.image_weather);
         txt_city_name = (TextView)itemView.findViewById(R.id.txt_city_name);
@@ -73,10 +74,8 @@ public class TodayWeatherFragment extends Fragment {
         txt_description = (TextView)itemView.findViewById(R.id.txt_description);
         txt_date_time = (TextView)itemView.findViewById(R.id.txt_date_time);
         txt_wind = (TextView)itemView.findViewById(R.id.txt_wind);
-        txt_geo_coord = (TextView)itemView.findViewById(R.id.txt_geo_coord);
+        txt_geo_coord = (TextView)itemView.findViewById(R.id.txt_coords);
 
-        weather_panel = (LinearLayout)itemView.findViewById(R.id.weather_panel);
-        loading = (ProgressBar)itemView.findViewById(R.id.loading);
 
         getWeatherInformation();
 
@@ -132,9 +131,4 @@ public class TodayWeatherFragment extends Fragment {
         );
     }
 
-    @Override
-    public void onStop() {
-        compositeDisposable.clear();
-        super.onStop();
-    }
-}
+}*/

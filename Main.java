@@ -1,8 +1,8 @@
-package com.example.openweather.Model;
+package com.example.weatherapp.Model;
 
 public class Main {
     private double temp;
-    private float pressure;
+    private int pressure;
     private int humidity;
     private double temp_min;
     private double temp_max;
@@ -18,11 +18,11 @@ public class Main {
         this.temp = temp;
     }
 
-    public float getPressure() {
+    public int getPressure() {
         return pressure;
     }
 
-    public void setPressure(float pressure) {
+    public void setPressure(int pressure) {
         this.pressure = pressure;
     }
 
