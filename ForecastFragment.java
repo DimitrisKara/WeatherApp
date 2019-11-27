@@ -1,4 +1,4 @@
-package com.example.openweather;
+package com.example.weatherapp;
 
 
 import android.os.Bundle;
@@ -13,11 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.openweather.Adapter.WeatherForecastAdapter;
-import com.example.openweather.Common.Common;
-import com.example.openweather.Model.WeatherForecastResult;
-import com.example.openweather.Retrofit.IOpenWeatherMap;
-import com.example.openweather.Retrofit.RetrofitClient;
+import com.example.weatherapp.Adapter.WeatherForecastAdapter;
+import com.example.weatherapp.Common.Common;
+import com.example.weatherapp.Model.WeatherForecastResult;
+import com.example.weatherapp.Retrofit.IOpenWeatherMap;
+import com.example.weatherapp.Retrofit.RetrofitClient;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -66,7 +66,7 @@ public class ForecastFragment extends Fragment {
         recycler_forecast.setHasFixedSize(true);
         recycler_forecast.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
-        getForecastWeatherInformation();
+       // getForecastWeatherInformation();
 
 
         return itemView;
@@ -81,7 +81,7 @@ public class ForecastFragment extends Fragment {
         super.onStop();
     }
 
-    private void getForecastWeatherInformation() {
+   /* private void getForecastWeatherInformation() {
         compositeDisposable.add(mService.getForecastWeatherByLating(
                 String.valueOf(Common.current_location.getLatitude()),
                 String.valueOf(Common.current_location.getLongitude()),
@@ -102,7 +102,7 @@ public class ForecastFragment extends Fragment {
                 })
 
         );
-    }
+    }*/
 
     private void displayForecastWeather(WeatherForecastResult weatherForecastResult) {
         txt_city_name.setText(new StringBuilder((weatherForecastResult.city.name)));

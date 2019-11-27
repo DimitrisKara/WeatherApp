@@ -1,4 +1,4 @@
-package com.example.openweather.Adapter;
+package com.example.weatherapp.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.openweather.Common.Common;
-import com.example.openweather.Model.WeatherForecastResult;
-import com.example.openweather.R;
+import com.example.weatherapp.Common.Common;
+import com.example.weatherapp.Model.WeatherForecastResult;
+import com.example.weatherapp.R;
 import com.squareup.picasso.Picasso;
 
 public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecastAdapter.MyViewHolder> {

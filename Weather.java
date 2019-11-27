@@ -1,36 +1,43 @@
-package com.example.farmweather;
+package com.example.weatherapp.Model;
 
 public class Weather {
-    String date;
-    String minTemp;
-    String maxTemp;
-    String link;
+    private int id;
+    private String main;
+    private String description;
+    private String icon;
 
-    public String getDate() {
-        return date;
+    public Weather() {
     }
 
-    public String getMinTemp() {
-        return minTemp;
+    public int getId() {
+        return id;
     }
 
-    public String getMaxTemp() {
-        return maxTemp;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getLink() {
-        return link;
+    public String getMain() {
+        return main;
     }
 
-    public void setDate(String date) {
+    public void setMain(String main) {
+        this.main = main;
     }
 
-    public void setMinTemp(String minTemperature) {
+    public String getDescription() {
+        return description;
     }
 
-    public void setMaxTemp(String maxTemperature) {
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setLink(String link) {
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }
