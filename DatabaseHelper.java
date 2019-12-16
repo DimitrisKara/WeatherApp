@@ -1,4 +1,4 @@
-package com.example.weatherapp;
+package com.cammace.aurora;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,57 +7,58 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
-public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "WeatherDB.db";
-    public static final String TABLE_NAME = "weather_table";
-    public static final String COL_1 = "Date";
-    public static final String COL_2 = "Temperature";
-    public static final String COL_3 = "Weather";
-    public static final String COL_4 = "City";
+        public class DatabaseHelper extends SQLiteOpenHelper {
+            public static final String DATABASE_NAME = "WeatherDB.db";
+            public static final String TABLE_NAME = "weather_table";
+            public static final String COL_1 = "ID";
+            public static final String COL_2 = "Date";
+            public static final String COL_3 = "Temperature";
+            public static final String COL_4 = "Weather";
+            public static final String COL_5 = "City";
 
 
-    public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
-    }
+            public DatabaseHelper(Context context) {
+                super(context, DATABASE_NAME, null, 1);
+            }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME +" (Date TEXT,Temperature INTEGER,Weather TEXT,City TEXT PRIMARY KEY)");
-    }
+            @Override
+            public void onCreate(SQLiteDatabase db) {
+                db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,Date TEXT,Temperature TEXT,Weather TEXT,City TEXT)");
+            }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
-        onCreate(db);
-    }
+            @Override
+            public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+                db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+                onCreate(db);
+            }
 
-    public boolean insertData(String Date, String Temperature, String Weather, String City) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1, Date);
-        contentValues.put(COL_2, Temperature);
-        contentValues.put(COL_3, Weather);
-        contentValues.put(COL_4, City);
-        long result = db.insert(TABLE_NAME,null ,contentValues);
-        if(result == -1)
-            return false;
-        else
-            return true;
-    }
+            public boolean insertData(String Date, String Temperature, String Weather, String City) {
+                SQLiteDatabase db = this.getWritableDatabase();
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(COL_2, Date);
+                contentValues.put(COL_3, Temperature);
+                contentValues.put(COL_4, Weather);
+                contentValues.put(COL_5, City);
+                long result = db.insert(TABLE_NAME,null ,contentValues);
+                if(result == -1)
+                    return false;
+                else
+                    return true;
+            }
 
-    public Cursor getAllData() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+TABLE_NAME,null);
-        return res;
-    }
+            public Cursor getAllData() {
+                SQLiteDatabase db = this.getWritableDatabase();
+                Cursor res = db.rawQuery("select * from "+TABLE_NAME,null);
+                return res;
+            }
 
-    public boolean updateData(String Date, String Temperature, String Weather, String City) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1,Date);
-        contentValues.put(COL_2,Temperature);
+            public boolean updateData(String Date, String Temperature, String Weather, String City) {
+                SQLiteDatabase db = this.getWritableDatabase();
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(COL_1,Date);
+                contentValues.put(COL_2,Temperature);
         contentValues.put(COL_3,Weather);
-        contentValues.put(COL_4,City);
+        //contentValues.put(COL_4,City);
         db.update(TABLE_NAME, contentValues, "City = ?",new String[] { City });
         return true;
     }
